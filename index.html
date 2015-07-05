@@ -74,8 +74,7 @@
 </div>
 </body>
 <script type="text/javascript">
-var result_count;
-var total_count;
+var result_count = 0;
 $('#convtable_area').hide();
 var resultset = [];
 
@@ -84,6 +83,7 @@ var exec = function(txt) {
 };
 
 var processText = function(txt) {
+	result_count = 0;
 	resultset = [];
 	$('#exec_button').hide();
 	dispWorking("処理中");
