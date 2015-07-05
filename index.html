@@ -44,8 +44,24 @@
 	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
   </div> -->
   <form>
+  	<div class="form-group">
+  		<label for="disabledSelect">イベントカテゴリ</label>
+  		<select class="form-control">
+  			<option value="event">1</option>
+  			<option value="gov">2</option>
+  			<option value="life">3</option>
+  			<option value="child">4</option>
+  			<option value="biz">5</option>
+  			<option value="health">6</option>
+  			<option value="town">7</option>
+  			<option value="job">8</option>
+  			<option value="bid">9</option>
+  			<option value="senior">10</option>
+  			<option value="handicap">11</option>
+  		</select>
+  	</div>
 	<div class="form-group">
-		<button class="btn btn-primary btn-lg" type="button" id="exec_button" onclick="exec()">割当実行</button>
+		<button class="btn btn-primary btn-lg" type="button" id="exec_button" onclick="exec()">実行</button>
   	</div></form>
   	<div id="convtable_area" class="well well-sm center-block">
   		<table id="convtable" class="table table-condensed">
