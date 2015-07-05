@@ -71,7 +71,6 @@ var processText = function(txt) {
 	$('#file-input').hide();
 	$('#exec_button').hide();
 	dispWorking("処理中");
-	total_count = 1;
 	issueQuery(txt);
 	chkCompletion();
 };
@@ -108,20 +107,16 @@ var issueQuery = function(q) {
 };
 
 var chkCompletion = function(){
-	if(result_count == total_count){
-		var out = "";
-		for (var idx in resultset){
-			if(idx < 10){ // 最初の10件のみ表示
-				$('#convtable').append('<tr>' + '</tr>');
-				$('#convtable tr:last')
-					.append('<td>' + resultset[idx]['area_label'] + '</td><td>' + resultset[idx]['count'] + '</td>');
-			}
+	var out = "";
+	for (var idx in resultset){
+		if(idx < 10){ // 最初の10件のみ表示
+			$('#convtable').append('<tr>' + '</tr>');
+			$('#convtable tr:last')
+				.append('<td>' + resultset[idx]['area_label'] + '</td><td>' + resultset[idx]['count'] + '</td>');
 		}
-		$('#convtable_area').show();
-		$('#download_div').show();
-	}else{
-	   setTimeout('chkCompletion()',1000);
 	}
+	$('#convtable_area').show();
+	$('#download_div').show();
 };
 
 var dispWorking = function(m){
