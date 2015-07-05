@@ -90,10 +90,10 @@ var processText = function(txt) {
 	chkCompletion();
 };
 
-var mkQuery = function(catebory) {
+var mkQuery = function(category) {
 	return 'PREFIX : <http://lodosaka.jp/property#>\n' +
 	'SELECT ?l (count(?l) as ?lc) {\n' +
-	'?s :category "' + $('#category').val() + '" ;\n' +
+	'?s :category "' + category + '" ;\n' +
 	':area_label ?l .\n' +
 	'} group by ?l order by desc(?lc)'
 };
