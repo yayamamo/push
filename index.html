@@ -84,7 +84,6 @@ var exec = function(txt) {
 };
 
 var processText = function(txt) {
-	alert(txt);
 	$('#exec_button').hide();
 	dispWorking("処理中");
 	issueQuery(txt);
@@ -100,7 +99,6 @@ var mkQuery = function(catebory) {
 };
 
 var issueQuery = function(q) {
-	alert(mkQuery(q));
 	qr = sendQuery("http://lod.hozo.jp/repositories/CHOsaka", mkQuery(q));
 	qr.fail(
 		function (xhr, textStatus, thrownError) {
