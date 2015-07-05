@@ -84,6 +84,7 @@ var exec = function() {
 };
 
 var processText = function(txt) {
+	alert($('#category').value);
 	$('#exec_button').hide();
 	dispWorking("処理中");
 	issueQuery(txt);
