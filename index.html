@@ -62,7 +62,7 @@
   		</select>
   	</div>
 	<div class="form-group">
-		<button class="btn btn-primary btn-lg" type="button" id="exec_button" onclick="exec()">実行</button>
+		<button class="btn btn-primary btn-lg" type="button" id="exec_button" onclick="exec($('#category').value)">実行</button>
   	</div></form>
   	<div id="convtable_area" class="well well-sm center-block">
   		<table id="convtable" class="table table-condensed">
@@ -79,12 +79,12 @@ var total_count;
 $('#convtable_area').hide();
 var resultset= [];
 
-var exec = function() {
-	processText($('#category').value);
+var exec = function(txt) {
+	processText(txt);
 };
 
 var processText = function(txt) {
-	alert($('#category').value);
+	alert(txt);
 	$('#exec_button').hide();
 	dispWorking("処理中");
 	issueQuery(txt);
