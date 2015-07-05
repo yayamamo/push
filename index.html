@@ -32,16 +32,6 @@
     background-position: center top;
     background-repeat: no-repeat;
 }
-#file-input div.input {
-    padding: 20px;
-    border: none 1px #555;
-    width: 100px;
-    height: 100px;
-    background-color: #fff;
-    background-image:url("drug_and_drop.png");
-    background-position: center center;
-    background-repeat: no-repeat;
-}
 </style>
 </head>
 <body>
@@ -73,47 +63,19 @@ $('#download_div').hide();
 $('#convtable_area').hide();
 var resultset= [];
 
-$(function() {
-	var inEle = $('#file-input div.input');
-
-	inEle
-	.on('dragenter', function(e) {
-		e.preventDefault();
-	})
-	.on('dragover', function(e){
-		e.preventDefault();
-	})
-	.on('drop', function(e){
-		e.preventDefault();
-		var files = e.originalEvent.dataTransfer.files;
-		for (var i=0; i<files.length; i++) {
-			if (files[i].type === 'text/plain') {
-				var reader = new FileReader();
-				reader.onerror = function(e) {
-					console.log('error', e.target.error.code);
-				}
-				reader.onload = function(e){
-					processText(e.target.result);
-				};
-				reader.readAsText(files[i], 'UTF-8');
-		 	}
-		}
-	});
-});
-		 
 var exec = function() {
-	processText();
+	processText("event");
 };
 
 var processText = function(txt) {
 	$('#file-input').hide();
 	$('#exec_button').hide();
 	dispWorking("処理中");
-	issueQuery('', 0);
+	issueQuery(txt, 0);
 	chkCompletion();
 };
 
-var mkQuery = function(cliteral) {
+var mkQuery = function(catebory) {
 	return 'PREFIX : <http://lodosaka.jp/property#>\n' +
 	'SELECT ?l (count(?l) as ?lc) {' +
 	'?s :category "event" ;' +
