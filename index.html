@@ -28,7 +28,7 @@
     text-align:center;
     padding-top:80px;
     width:100px;
-    background-image:url("workingNow.gif");
+    // background-image:url("workingNow.gif");
     background-position: center top;
     background-repeat: no-repeat;
 }
@@ -53,10 +53,7 @@
   <!-- <div class="alert alert-warning" role="warning">
 	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
   </div> -->
-  <form><div class="form-group">
-	<label>SPARQLエンドポイント:</label>
-	<input id="endpoint" class="form-control" value="http://lod.hozo.jp/repositories/CHOsaka" type="text">
-	</div>
+  <form>
 	<div class="form-group">
 		<button class="btn btn-primary btn-lg" type="button" id="exec_button" onclick="exec()">割当実行</button>
   	</div></form>
@@ -105,19 +102,14 @@ $(function() {
 });
 		 
 var exec = function() {
-	processText($('#literal').val());
+	processText();
 };
 
 var processText = function(txt) {
 	$('#file-input').hide();
 	$('#exec_button').hide();
 	dispWorking("処理中");
-	rows = txt.split("\n");
-	result_count = 0;
-	total_count = rows.length;
-	for ( var r in rows ){
-		issueQuery(rows[r], r);
-	}
+	issueQuery('', 0);
 	chkCompletion();
 };
 
@@ -133,7 +125,7 @@ var issueQuery = function(q,i) {
 	resultset.push({});
 	resultset[i]['area_label'] = "";
 	resultset[i]['count'] = "";
-	qr = sendQuery($('#endpoint').val(), mkQuery(q));
+	qr = sendQuery("http://lod.hozo.jp/repositories/CHOsaka", mkQuery(q));
 	qr.fail(
 		function (xhr, textStatus, thrownError) {
 			result_count++;
