@@ -107,6 +107,7 @@ var chkCompletion = function(){
 	var out = "";
 	for (var idx in resultset){
 		if(idx < 10){ // 最初の10件のみ表示
+			alert(idx);
 			$('#convtable').append('<tr>' + '</tr>');
 			$('#convtable tr:last')
 				.append('<td>' + resultset[idx]['area_label'] + '</td><td>' + resultset[idx]['count'] + '</td>');
