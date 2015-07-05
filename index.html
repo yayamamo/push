@@ -99,6 +99,7 @@ var mkQuery = function(catebory) {
 };
 
 var issueQuery = function(q) {
+	alert(mkQuery(q));
 	qr = sendQuery("http://lod.hozo.jp/repositories/CHOsaka", mkQuery(q));
 	qr.fail(
 		function (xhr, textStatus, thrownError) {
