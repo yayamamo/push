@@ -93,7 +93,7 @@ var processText = function(txt) {
 var mkQuery = function(catebory) {
 	return 'PREFIX : <http://lodosaka.jp/property#>\n' +
 	'SELECT ?l (count(?l) as ?lc) {\n' +
-	'?s :category "event" ;\n' +
+	'?s :category "' + category + '" ;\n' +
 	':area_label ?l .\n' +
 	'} group by ?l order by desc(?lc)'
 };
