@@ -45,8 +45,8 @@
   </div> -->
   <form>
   	<div class="form-group">
-  		<label for="disabledSelect">イベントカテゴリ</label>
-  		<select class="form-control">
+  		<label for="disabledSelect">カテゴリ</label>
+  		<select id="category" class="form-control">
   			<option value="event">イベント・観光</option>
   			<option value="gov">行政情報</option>
   			<option value="life">暮らし</option>
@@ -80,7 +80,7 @@ $('#convtable_area').hide();
 var resultset= [];
 
 var exec = function() {
-	processText("event");
+	processText($('#category').value);
 };
 
 var processText = function(txt) {
