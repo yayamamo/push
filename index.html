@@ -71,6 +71,7 @@ var processText = function(txt) {
 	$('#file-input').hide();
 	$('#exec_button').hide();
 	dispWorking("処理中");
+	total_count = 1;
 	issueQuery(txt);
 	chkCompletion();
 };
