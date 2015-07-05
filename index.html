@@ -94,9 +94,9 @@ var issueQuery = function(q) {
 				result_count++;
 				for (var dt = 0; dt < d.results.bindings.length; dt++) {
 					resultset.push({
-						'area_label':d.results.bindings[dt]['l'].value},
+						'area_label':d.results.bindings[dt]['l'].value,
 						'count':d.results.bindings[dt]['lc'].value,
-						);
+					});
 				}
 			}
 		}
