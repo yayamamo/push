@@ -112,6 +112,7 @@ var chkCompletion = function(){
 			$('#convtable').append('<tr>' + '</tr>');
 			$('#convtable tr:last')
 				.append('<td>' + resultset[idx]['area_label'] + '</td><td>' + resultset[idx]['count'] + '</td>');
+			alert(idx + ":" + resultset[idx]['area_label'] + ":" + resultset[idx]['count']);
 		}
 	}
 	$('#convtable_area').show();
