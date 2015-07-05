@@ -77,13 +77,15 @@
 var result_count;
 var total_count;
 $('#convtable_area').hide();
-var resultset= [];
+var resultset = [];
 
 var exec = function(txt) {
 	processText(txt);
 };
 
 var processText = function(txt) {
+	resultset = [];
+	alert(txt);
 	$('#exec_button').hide();
 	dispWorking("処理中");
 	issueQuery(txt);
