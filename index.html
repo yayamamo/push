@@ -121,6 +121,7 @@ var issueQuery = function(q) {
 
 var chkCompletion = function(){
 	if(result_count == 1){
+		$('#convtable tbody').remove();
 		for (var idx in resultset){
 			if(idx < 10){ // 最初の10件のみ表示
 				$('#convtable').append('<tr>' + '</tr>');
