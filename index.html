@@ -94,8 +94,8 @@ var issueQuery = function(q) {
 				result_count++;
 				for (var dt = 0; dt < d.results.bindings.length; dt++) {
 					resultset.push({
-						'area_label':d.results.bindings[dt]['l'].value,
-						'count':d.results.bindings[dt]['lc'].value,
+						'area_label' : d.results.bindings[dt]['l'].value,
+						'count' : d.results.bindings[dt]['lc'].value
 					});
 				}
 			}
@@ -105,9 +105,10 @@ var issueQuery = function(q) {
 
 var chkCompletion = function(){
 	var out = "";
+	alert(resultset.length);
 	for (var idx in resultset){
 		if(idx < 10){ // 最初の10件のみ表示
-			alert(idx);
+			
 			$('#convtable').append('<tr>' + '</tr>');
 			$('#convtable tr:last')
 				.append('<td>' + resultset[idx]['area_label'] + '</td><td>' + resultset[idx]['count'] + '</td>');
