@@ -105,14 +105,11 @@ var issueQuery = function(q) {
 
 var chkCompletion = function(){
 	var out = "";
-	alert(resultset.length);
 	for (var idx in resultset){
 		if(idx < 10){ // 最初の10件のみ表示
-			
 			$('#convtable').append('<tr>' + '</tr>');
 			$('#convtable tr:last')
 				.append('<td>' + resultset[idx]['area_label'] + '</td><td>' + resultset[idx]['count'] + '</td>');
-			alert(idx + ":" + resultset[idx]['area_label'] + ":" + resultset[idx]['count']);
 		}
 	}
 	removeWorking();
