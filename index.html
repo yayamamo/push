@@ -47,41 +47,19 @@
 <body>
 <div class="container">
   <div class="row"><div class="col-xs-12 col-md-12">
-  <div class="page-header"><h1>なんでもリンク</h1></div>
-  <p class="lead">文字列をDBpediaのURIに割り当てます</p>
-  <p>与えられた文字列に対応するURIを対象エンドポイントに問い合わせして割り当てます。結果はCSV形式でダウンロードできます。
-一度実行するとリロードするまで再実行は出来ません。
-本アプリケーションは<a href="https://github.com/yayamamo/anyLink">GitHub</a>で公開しています。</p>
+  <div class="page-header"><h1>自治体RSS解析</h1></div>
+  <p class="lead">説明</p>
+  <p></p>
   <!-- <div class="alert alert-warning" role="warning">
 	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
   </div> -->
   <form><div class="form-group">
 	<label>SPARQLエンドポイント:</label>
-    <input id="endpoint" class="form-control" value="http://ja.dbpedia.org/sparql" type="text">
+	<input id="endpoint" class="form-control" value="http://lod.hozo.jp/repositories/CHOsaka" type="text">
 	</div>
-	<h4>以下のいずれかの方法で割り当てます。</h4>
 	<div class="form-group">
-	<label>1. 割り当てたい文字列(一行一文字列)が書かれたファイルを以下にドロップしてください。自動で処理が始まります。</label>
-	<div id="file-input">
-		<div class="input"></div>
-	</div></div>
-	<div class="form-group">
-	<label>2. 割り当てたい文字列(一行一文字列)を入力してください。入力後、「割当実行」をクリックしてください。</label>
-	<textarea id="literal" rows=10 class="form-control" ></textarea> 
-    <button class="btn btn-primary btn-lg" type="button" id="exec_button" onclick="exec()">割当実行</button>
+		<button class="btn btn-primary btn-lg" type="button" id="exec_button" onclick="exec()">割当実行</button>
   	</div></form>
-  </div></div>
-  <div class="row"><div class="col-xs-12 col-md-12">
-  <!-- csvダウンロード -->
-  <div id="download_div"><p>
-  <a id="download" class="btn btn-success btn-lg" target="_blank">ダウンロード</a></p></div>
-  <!-- 変換テーブル -->
-  <div id="convtable_area" class="well well-sm center-block">
-    <table id="convtable" class="table table-condensed">
-    <caption><b>割当結果</b> (最初の最大10件分)</caption>
-    <thead><tr><th>Literal</th><th>URI</th></tr></thead>
-    <tbody></tbody></table>
-  </div>
   </div></div>
 </div>
 </body>
@@ -138,17 +116,17 @@ var processText = function(txt) {
 };
 
 var mkQuery = function(cliteral) {
-	ecliteral = cliteral.replace(/"/g, "\\\"");
-	return 'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n' +
-	'SELECT DISTINCT ?s\n' +
-	'FROM <http://ja.dbpedia.org>\n' +
-	'WHERE { ?s rdfs:label "' + ecliteral + '"@ja . }'
+	return 'PREFIX : <http://lodosaka.jp/property#>\n' +
+	'SELECT ?l (count(?l) as ?lc) {' +
+	'?s :category "event" ;' +
+	':area_label ?l .' +
+	'} group by ?l order by desc(?lc)'
 };
 
 var issueQuery = function(q,i) {
 	resultset.push({});
-	resultset[i]['literal'] = q;
-	resultset[i]['uri'] = "";
+	resultset[i]['area_label'] = "";
+	resultset[i]['count'] = "";
 	qr = sendQuery($('#endpoint').val(), mkQuery(q));
 	qr.fail(
 		function (xhr, textStatus, thrownError) {
@@ -160,11 +138,8 @@ var issueQuery = function(q,i) {
 			if (d.results.bindings instanceof Array) {
 				result_count++;
 				for (var dt = 0; dt < d.results.bindings.length; dt++) {
-					sp = '';
-					if(dt > 0){
-						sp = '; ';
-					}
-					resultset[i]['uri'] += sp + d.results.bindings[dt]['s'].value;
+					resultset[i]['area_label'] += d.results.bindings[dt]['l'].value;
+					resultset[i]['count'] += d.results.bindings[dt]['lc'].value;
 				}
 			}
 		}
@@ -175,32 +150,16 @@ var chkCompletion = function(){
 	if(result_count == total_count){
 		var out = "";
 		for (var idx in resultset){
-			var lt = '"' + resultset[idx]['literal'].replace(/"/g,"\"\"") + '"';
-			var ct = '"' + resultset[idx]['uri'].replace(/"/g,"\"\"") + '"';
-			out += lt + "," + ct + "\r\n";
 			if(idx < 10){ // 最初の10件のみ表示
 				$('#convtable').append('<tr>' + '</tr>');
 				$('#convtable tr:last')
-					.append('<td>' + resultset[idx]['literal'] + '</td><td><a href="' + resultset[idx]['uri'] + '" target="_blank">'+ resultset[idx]['uri'] + '</a></td>');
+					.append('<td>' + resultset[idx]['area_label'] + '</td><td>' + resultset[idx]['count'] + '</td>');
 			}
 		}
-		setBlobUrl("download", out);
-		removeWorking();
 		$('#convtable_area').show();
 		$('#download_div').show();
 	}else{
 	   setTimeout('chkCompletion()',1000);
-	}
-};
-
-var setBlobUrl = function(id, content) {
-    var blob = new Blob([ content ], { "type" : "application/csv;charset=UTF-8" });
-	if(window.navigator.msSaveBlob){ // for IE
-		navigator.msSaveBlob(blob, "output.csv"); 
-	}else{
-		window.URL = window.URL || window.webkitURL;
-		$("#" + id).attr("href", window.URL.createObjectURL(blob));
-		$("#" + id).attr("download", "output.csv");
 	}
 };
 
