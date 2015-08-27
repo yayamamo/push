@@ -129,7 +129,7 @@ var chkCompletion = function(){
 			if(idx < 10){ // 最初の10件のみ表示
 				$('#convtable').append('<tr>' + '</tr>');
 				$('#convtable tr:last')
-					.append('<td><a href="http://push.jp.net/osaka/index.html?area=' + resultset[idx]['area'] + '">' + resultset[idx]['area_label'] + '</a></td><td>' + resultset[idx]['count'] + '</td>');
+					.append('<td><a href="http://push.jp.net/koho/index.html?area=' + resultset[idx]['area'] + '">' + resultset[idx]['area_label'] + '</a></td><td>' + resultset[idx]['count'] + '</td>');
 			}
 			removeWorking();
 			$('#convtable_area').show();
