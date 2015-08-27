@@ -93,10 +93,11 @@ var processText = function(txt) {
 
 var mkQuery = function(category) {
 	return 'PREFIX : <http://lodosaka.jp/property#>\n' +
-	'SELECT ?l (count(?l) as ?lc) {\n' +
+	'SELECT ?l (count(?l) as ?lc) ?area {\n' +
 	'?s :category "' + category + '" ;\n' +
-	':area_label ?l .\n' +
-	'} group by ?l order by desc(?lc)'
+	':area_label ?l ;\n' +
+	':area ?area .\n' +
+	'} group by ?l ?area order by desc(?lc)'
 };
 
 var issueQuery = function(q) {
@@ -111,7 +112,8 @@ var issueQuery = function(q) {
 				for (var dt = 0; dt < d.results.bindings.length; dt++) {
 					resultset.push({
 						'area_label' : d.results.bindings[dt]['l'].value,
-						'count' : d.results.bindings[dt]['lc'].value
+						'count' : d.results.bindings[dt]['lc'].value,
+						'area' : d.results.bindings[dt]['area'].value
 					});
 				}
 			}
@@ -127,7 +129,7 @@ var chkCompletion = function(){
 			if(idx < 10){ // 最初の10件のみ表示
 				$('#convtable').append('<tr>' + '</tr>');
 				$('#convtable tr:last')
-					.append('<td>' + resultset[idx]['area_label'] + '</td><td>' + resultset[idx]['count'] + '</td>');
+					.append('<td><a href="http://push.jp.net/osaka/index.html?area=' + resultset[idx]['area'] + '">' + resultset[idx]['area_label'] + '</a></td><td>' + resultset[idx]['count'] + '</td>');
 			}
 			removeWorking();
 			$('#convtable_area').show();
