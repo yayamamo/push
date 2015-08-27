@@ -46,7 +46,7 @@
   <!-- <div class="alert alert-warning" role="warning">
 	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
   </div> -->
-  <form onsubmit="processText($('#keyword').val(),'keyword')">
+  <form>
   	<div class="form-group">
   		<label for="disabledSelect">カテゴリ</label>
   		<select id="category" class="form-control" onchange="processText($('#category').val(),'category')">
@@ -72,6 +72,7 @@
   		<label for="freeText">検索用キーワード</label>
   		<input type="text" class="form-control" id="keyword">
   		<p>特定のキーワードを含む配信情報について件数を確認したい場合にご利用ください。</p>
+  		<button class="btn" type="button" onclick="processText($('#keyword').val(),'keyword')">検索</button>
   	</div>
   </form>
   	<div id="convtable_area" class="well well-sm center-block">
