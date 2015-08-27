@@ -88,12 +88,12 @@ var result_count = 0;
 $('#convtable_area').hide();
 var resultset = [];
 
-var processText = function(txt) {
+var processText = function(txt,type) {
 	result_count = 0;
 	resultset = [];
 	$('#exec_button').hide();
 	dispWorking("処理中");
-	issueQuery(txt);
+	issueQuery(txt,type);
 	chkCompletion();
 };
 
@@ -106,7 +106,17 @@ var mkQuery = function(category) {
 	'} group by ?l ?area order by desc(?lc)'
 };
 
-var issueQuery = function(q) {
+var mkQuery2 = function(keyword) {
+	return 'PREFIX : <http://lodosaka.jp/property#>\n' +
+	'SELECT ?l (count(?l) as ?lc) ?area {\n' +
+	'?s :area_label ?l ;\n' +
+	':area ?area ;\n' +
+	' <http://purl.org/rss/2.0/title> ?t.' +
+	'FILTER contains(?t, "' + keyword + '")' +
+	'} group by ?l ?area order by desc(?lc)'
+};
+
+var issueQuery = function(q, t) {
 	qr = sendQuery("http://lod.hozo.jp/repositories/CHOsaka", mkQuery(q));
 	qr.fail(
 		function (xhr, textStatus, thrownError) {
