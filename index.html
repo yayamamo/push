@@ -66,9 +66,7 @@
   				<option value="other">市民の方へ（その他）</option>
   			</select>
   		</div></div>
-  	<div class="form-group">
-  		<button class="btn btn-primary btn-lg" type="button" id="exec_button" onclick="processText($('#category').val(),'category')">実行</button>
-  	</div>
+  	<button class="btn btn-primary" type="button" id="exec_button" onclick="processText($('#category').val(),'category')">実行</button>
   	<p><strong>あるいは、</strong></p>
   	<div class="form-group">
   		<label class="sr-only" for="keyword">キーワード</label>
@@ -77,7 +75,7 @@
 	  		<input type="text" class="form-control" id="keyword">
   		</div>
   	</div>
-  	<button class="btn btn-primary btn-lg" type="button" onclick="processText($('#keyword').val(),'keyword')">実行</button>
+  	<button class="btn btn-primary" type="button" onclick="processText($('#keyword').val(),'keyword')">実行</button>
   	<p>特定のキーワードを含む配信情報について件数を確認したい場合にご利用ください。</p>
   </form>
   <div id="convtable_area" class="well well-sm center-block">
