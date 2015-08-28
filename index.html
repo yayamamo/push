@@ -141,6 +141,9 @@ var issueQuery = function(q,t) {
 		function (d) {
 			if (d.results.bindings instanceof Array) {
 				for (var dt = 0; dt < d.results.bindings.length; dt++) {
+					if(d.results.bindings[dt]['lc'].value == 0){ // AG 4.13.1のバグ対応
+						break;
+					}
 					resultset.push({
 						'area_label' : d.results.bindings[dt]['l'].value,
 						'count' : d.results.bindings[dt]['lc'].value,
