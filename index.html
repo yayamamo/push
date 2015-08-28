@@ -40,7 +40,7 @@
   <div class="page-header"><h1>自治体RSS解析</h1></div>
   <p class="lead">各自治体の配信しているRSS情報について、その内容のカテゴリ毎に件数の多い上位10自治体を列挙します。</p>
   <p>全国の様々な自治体が、関連するイベントや行政情報をRSSを用いて配信しています。
-  自治体から配信される情報は、その内容に基づいてそれぞれの自治体により分類されておりますが、一般的に共通して「子育て」などのカテゴリ名を付けることができます。
+  自治体から配信される情報は、その内容に基づいてそれぞれの自治体により分類されていますが、一般的に共通して「子育て」などのカテゴリ名を付けることができます。
   そこで、各カテゴリにおいて配信されている情報数の多い自治体を列挙する本ウェブアプリケーションを開発しました。
   <p></p>
   <!-- <div class="alert alert-warning" role="warning">
@@ -72,7 +72,7 @@
   		<label for="freeText">検索用キーワード</label>
   		<input type="text" class="form-control" id="keyword">
   		<p>特定のキーワードを含む配信情報について件数を確認したい場合にご利用ください。</p>
-  		<button class="btn" type="button" onclick="processText($('#keyword').val(),'keyword')">検索</button>
+  		<button class="btn btn-primary btn-lg" type="button" onclick="processText($('#keyword').val(),'keyword')">実行</button>
   	</div>
   </form>
   	<div id="convtable_area" class="well well-sm center-block">
