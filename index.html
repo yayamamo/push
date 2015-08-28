@@ -176,6 +176,7 @@ var chkCompletion = function(txt,type){
 		$('#convtable tbody').remove();
 		for (var idx in resultset){
 			if(idx < 10){ // 最初の10件のみ表示
+				alert(resultset[idx]['area'] in o24wHash);
 				burl = (resultset[idx]['area'] == "city" || resultset[idx]['area'] in o24wHash)?
 					"http://push.jp.net/osaka/index.html":"http://push.jp.net/koho/index.html";
 				area = 'area=' + resultset[idx]['area'];
