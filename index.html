@@ -146,10 +146,12 @@ var chkCompletion = function(txt,type){
 		for (var idx in resultset){
 			if(idx < 10){ // 最初の10件のみ表示
 				burl = (resultset[idx]['area'] == "city")?"http://push.jp.net/osaka/index.html":"http://push.jp.net/koho/index.html";
-				narrow = (type == "category")?"category=event":"keywords=" + encodeURIComponent(txt);
+				area = 'area=' + resultset[idx]['area'];
+				narrow = (type == "category")?"category=":"keywords=";
+				narrow += encodeURIComponent(txt);
 				$('#convtable').append('<tr>' + '</tr>');
 				$('#convtable tr:last')
-					.append('<td><a href="' + burl + '?area=' + resultset[idx]['area'] + '&' + narrow + '">' + resultset[idx]['area_label'] + '</a></td><td>' + resultset[idx]['count'] + '</td>');
+					.append('<td><a href="' + burl + '?' + area + '&' + narrow + '">' + resultset[idx]['area_label'] + '</a></td><td>' + resultset[idx]['count'] + '</td>');
 			}
 			removeWorking();
 			$('#convtable_area').show();
