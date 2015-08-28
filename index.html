@@ -72,11 +72,11 @@
   		<label class="sr-only" for="keyword">キーワード</label>
   		<div class="input-group">
   			<div class="input-group-addon">キーワード</div>
-	  		<input type="text" class="form-control" id="keyword">
+	  		<input type="text" class="form-control" id="keyword" aria-describedby="helpDescription">
   		</div>
   	</div>
   	<button class="btn btn-primary" type="button" onclick="processText($('#keyword').val(),'keyword')">実行</button>
-  	<p>特定のキーワードを含む配信情報について件数を確認したい場合にご利用ください。</p>
+  	<span id="helpDescription" class="help-block">特定のキーワードを含む配信情報について件数を確認したい場合にご利用ください。</span>
   </form>
   <div id="convtable_area" class="well well-sm center-block">
   	<table id="convtable" class="table table-condensed">
