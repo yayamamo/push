@@ -134,21 +134,21 @@ var processText = function(txt,type) {
 
 var mkQuery = function(category) {
 	return 'PREFIX : <http://lodosaka.jp/property#>\n' +
-	'SELECT ?l (count(?l) as ?lc) ?area {\n' +
-	'?s :category "' + category + '" ;\n' +
+	'SELECT ?l (count(?l) as ?lc) ?area ?g {\n' +
+	'graph ?g {?s :category "' + category + '" ;\n' +
 	':area_label ?l ;\n' +
 	':area ?area .\n' +
-	'} group by ?l ?area order by desc(?lc)'
+	'}} group by ?l ?area ?g order by desc(?lc)'
 };
 
 var mkQuery2 = function(keyword) {
 	return 'PREFIX : <http://lodosaka.jp/property#>\n' +
-	'SELECT ?l (count(?l) as ?lc) ?area {\n' +
-	'?s :area_label ?l ;\n' +
+	'SELECT ?l (count(?l) as ?lc) ?area ?g {\n' +
+	'graph ?g {?s :area_label ?l ;\n' +
 	':area ?area ;\n' +
 	' <http://purl.org/rss/2.0/title> ?t.' +
 	'FILTER contains(?t, "' + keyword + '")' +
-	'} group by ?l ?area order by desc(?lc)'
+	'}} group by ?l ?area ?g order by desc(?lc)'
 };
 
 var issueQuery = function(q,t) {
@@ -178,7 +178,7 @@ var chkCompletion = function(txt,type){
 		$('#convtable tbody').remove();
 		for (var idx in resultset){
 			if(idx < 10){ // 最初の10件のみ表示
-				burl = (resultset[idx]['area'] == "city" || resultset[idx]['area'] in o24wHash)?
+				burl = (resultset[idx]['g'] == "osakarss")?
 					"http://push.jp.net/osaka/index.html":"http://push.jp.net/koho/index.html";
 				area = 'area=' + resultset[idx]['area'];
 				narrow = (type == "category")?"category=":"keywords=";
