@@ -167,7 +167,8 @@ var issueQuery = function(q,t) {
 					resultset.push({
 						'area_label' : d.results.bindings[dt]['l'].value,
 						'count' : d.results.bindings[dt]['lc'].value,
-						'area' : d.results.bindings[dt]['area'].value
+						'area' : d.results.bindings[dt]['area'].value,
+						'graph' : d.results.bindings[dt]['g'].value
 					});
 				}
 			}
