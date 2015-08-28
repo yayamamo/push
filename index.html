@@ -168,7 +168,7 @@ var chkCompletion = function(txt,type){
 var dispWorking = function(m){
 	var disp_msg = "";
 	if( m != ""){
-		disp_msg = "<div class='workingMsg'>" + m + "</div>"; 
+		disp_msg = "<div class='workingMsg'><strong>" + m + "</strong></div>"; 
 	}
 	if($("#workingNow").size() == 0){
 		$("body").append("<div id='workingNow'>" + disp_msg + "</div>");
