@@ -134,6 +134,7 @@ var issueQuery = function(q,t) {
 	qr = sendQuery("http://lod.hozo.jp/repositories/CHOsaka", t == "category"? mkQuery(q) : mkQuery2(q));
 	qr.fail(
 		function (xhr, textStatus, thrownError) {
+			result_count = 1;
 		}
 	);
 	qr.done(
