@@ -96,7 +96,7 @@ var processText = function(txt,type) {
 	// alert(txt + " | " + type)
 	dispWorking("処理中");
 	issueQuery(txt,type);
-	chkCompletion();
+	chkCompletion(txt,type);
 };
 
 var mkQuery = function(category) {
@@ -118,7 +118,7 @@ var mkQuery2 = function(keyword) {
 	'} group by ?l ?area order by desc(?lc)'
 };
 
-var issueQuery = function(q, t) {
+var issueQuery = function(q,t) {
 	qr = sendQuery("http://lod.hozo.jp/repositories/CHOsaka", t == "category"? mkQuery(q) : mkQuery2(q));
 	qr.fail(
 		function (xhr, textStatus, thrownError) {
@@ -140,7 +140,7 @@ var issueQuery = function(q, t) {
 	);
 };
 
-var chkCompletion = function(){
+var chkCompletion = function(txt,type){
 	if(result_count == 1){
 		$('#convtable tbody').remove();
 		for (var idx in resultset){
@@ -154,7 +154,10 @@ var chkCompletion = function(){
 			$('#convtable_area').show();
 		}
 	}else{
-		setTimeout('chkCompletion()',1000);
+		setTimeout( function(){
+			chkCompletion(txt,type);
+		},1000);
+		//setTimeout('chkCompletion()',1000);
 	}
 };
 
