@@ -34,7 +34,7 @@
 <div class="container">
 	<div class="row"><div class="col-xs-12 col-md-12">
 		<div class="page-header"><h1>自治体RSS解析</h1></div>
-		<p class="lead">各自治体の配信しているRSS情報について、その内容のカテゴリ毎に件数の多い上位10自治体を列挙します。</p>
+		<p class="lead">各自治体の配信しているRSS情報について、特定のカテゴリに含まれるか、特定のキーワードを含む件数の多い上位10自治体を列挙します。</p>
 		<div class="well">
 		<p>全国の様々な自治体が、関連するイベントや行政情報をRSSを用いて配信しています。
 		自治体から配信される情報は、その内容に基づいてそれぞれの自治体により分類されていますが、一般的に共通して「子育て」などのカテゴリ名を付けることができます。
@@ -74,7 +74,7 @@
   		</div>
   	</div>
   	<button class="btn btn-primary" type="button" onclick="processText($('#keyword').val(),'keyword')">実行</button>
-  	<span id="helpDescription" class="help-block">特定のキーワードを含む配信情報について件数を確認したい場合にご利用ください。</span>
+  	<!-- <span id="helpDescription" class="help-block">特定のキーワードを含む配信情報について件数を確認したい場合にご利用ください。</span> -->
   </form>
   <div id="convtable_area" class="well well-sm center-block">
   	<table id="convtable" class="table table-condensed">
