@@ -107,6 +107,7 @@ var processText = function(txt,type) {
 	if(type == 'category'){
 		$('#keyword').val("");
 	}
+	$('#convtable_area').hide();
 	dispWorking("処理中");
 	issueQuery(txt,type);
 	chkCompletion(txt,type);
@@ -173,8 +174,8 @@ var chkCompletion = function(txt,type){
 				$('#convtable tr:last')
 					.append('<td><a href="' + burl + '?' + area + '&' + narrow + '">' + resultset[idx]['area_label'] + '</a></td><td>' + resultset[idx]['count'] + '</td>');
 			}
-			$('#convtable_area').show();
 		}
+		$('#convtable_area').show();
 	}else{
 		setTimeout( function(){
 			chkCompletion(txt,type);
