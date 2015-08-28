@@ -2,9 +2,9 @@
 <html lang="ja">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 <title>自治体RSS配信情報解析</title>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -36,17 +36,17 @@
 </head>
 <body>
 <div class="container">
-  <div class="row"><div class="col-xs-12 col-md-12">
-  <div class="page-header"><h1>自治体RSS解析</h1></div>
-  <p class="lead">各自治体の配信しているRSS情報について、その内容のカテゴリ毎に件数の多い上位10自治体を列挙します。</p>
-  <p>全国の様々な自治体が、関連するイベントや行政情報をRSSを用いて配信しています。
-  自治体から配信される情報は、その内容に基づいてそれぞれの自治体により分類されていますが、一般的に共通して「子育て」などのカテゴリ名を付けることができます。
-  そこで、各カテゴリにおいて配信されている情報数の多い自治体を列挙する本ウェブアプリケーションを開発しました。
-  <p></p>
+	<div class="row"><div class="col-xs-12 col-md-12">
+		<div class="page-header"><h1>自治体RSS解析</h1></div>
+		<p class="lead">各自治体の配信しているRSS情報について、その内容のカテゴリ毎に件数の多い上位10自治体を列挙します。</p>
+		<p>全国の様々な自治体が、関連するイベントや行政情報をRSSを用いて配信しています。
+		自治体から配信される情報は、その内容に基づいてそれぞれの自治体により分類されていますが、一般的に共通して「子育て」などのカテゴリ名を付けることができます。
+		そこで、各カテゴリにおいて配信されている情報数の多い自治体を列挙する本ウェブアプリケーションを開発しました。
+		<p></p>
   <!-- <div class="alert alert-warning" role="warning">
 	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
   </div> -->
-  <form action="" onsubmit="processText($('#keyword').val(),'keyword');return false;">
+  <form class="form-inline" action="" onsubmit="processText($('#keyword').val(),'keyword');return false;">
   	<div class="form-group">
   		<label for="disabledSelect">カテゴリ</label>
   		<select id="category" class="form-control" onchange="processText($('#category').val(),'category')">
@@ -75,11 +75,11 @@
   		<button class="btn btn-primary btn-lg" type="button" onclick="processText($('#keyword').val(),'keyword')">実行</button>
   	</div>
   </form>
-  	<div id="convtable_area" class="well well-sm center-block">
-  		<table id="convtable" class="table table-condensed">
-  			<caption><b>結果</b> (最初の最大10件分)</caption>
-  			<thead><tr><th>自治体</th><th>件数</th></tr></thead>
-  			<tbody></tbody></table>
+  <div id="convtable_area" class="well well-sm center-block">
+  	<table id="convtable" class="table table-condensed">
+  		<caption><b>結果</b> (最初の最大10件分)</caption>
+  		<thead><tr><th>自治体</th><th>件数</th></tr></thead>
+  		<tbody></tbody></table>
   	</div>
   </div></div>
   <hr>
@@ -90,40 +90,11 @@
 var result_count = 0;
 $('#convtable_area').hide();
 var resultset = [];
-var osaka24wards = [
-	'abeno',
-	'asahi',
-	'chuo',
-	'fukushima',
-	'higashinari',
-	'higashisumiyoshi',
-	'higashiyodogawa',
-	'hirano',
-	'ikuno',
-	'joto',
-	'kita',
-	'konohana',
-	'minato',
-	'miyakojima',
-	'naniwa',
-	'nishi',
-	'nishinari',
-	'nishiyodogawa',
-	'suminoe',
-	'sumiyoshi',
-	'taisho',
-	'tennoji',
-	'tsurumi',
-	'yodogawa',
-];
-var o24wHash = {};
-for (w of osaka24wards){
-	o24wHash[w] = 1;
-}
+
 var processText = function(txt,type) {
-  if(txt.length == 0){
-    return true;
-  }
+	if(txt.length == 0){
+		return true;
+	}
 	result_count = 0;
 	resultset = [];
 	// $('#exec_button').hide();
