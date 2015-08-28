@@ -46,7 +46,7 @@
   <!-- <div class="alert alert-warning" role="warning">
 	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
   </div> -->
-  <form>
+  <form action="" onsubmit="processText($('#category').val(),'category');return false;">
   	<div class="form-group">
   		<label for="disabledSelect">カテゴリ</label>
   		<select id="category" class="form-control" onchange="processText($('#category').val(),'category')">
