@@ -142,8 +142,7 @@ var issueQuery = function(q,t) {
 			if (d.results.bindings instanceof Array) {
 				for (var dt = 0; dt < d.results.bindings.length; dt++) {
 					if(d.results.bindings[dt]['lc'].value == 0){ // AG 4.13.1のバグ対応
-						result_count = 1;
-						return;
+						break;
 					}
 					resultset.push({
 						'area_label' : d.results.bindings[dt]['l'].value,
@@ -161,10 +160,11 @@ var issueQuery = function(q,t) {
 var chkCompletion = function(txt,type){
 	if(result_count == 1){
 		$('#convtable tbody').remove();
+		removeWorking();
 		for (var idx in resultset){
 			if(idx < 10){ // 最初の10件のみ表示
 				dspace = resultset[idx]['graph'];
-			  burl = "http://push.jp.net/" + dspace.substring(19,dspace.length - 3) + "/index.html";
+				burl = "http://push.jp.net/" + dspace.substring(19,dspace.length - 3) + "/index.html";
 				area = 'area=' + resultset[idx]['area'];
 				narrow = (type == "category")?"category=":"keywords=";
 				narrow += encodeURIComponent(txt);
@@ -172,7 +172,6 @@ var chkCompletion = function(txt,type){
 				$('#convtable tr:last')
 					.append('<td><a href="' + burl + '?' + area + '&' + narrow + '">' + resultset[idx]['area_label'] + '</a></td><td>' + resultset[idx]['count'] + '</td>');
 			}
-			removeWorking();
 			$('#convtable_area').show();
 		}
 	}else{
