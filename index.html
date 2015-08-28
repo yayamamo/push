@@ -121,6 +121,9 @@ for (w of osaka24wards){
 	o24wHash[w] = 1;
 }
 var processText = function(txt,type) {
+  if(txt.length == 0){
+    return true;
+  }
 	result_count = 0;
 	resultset = [];
 	// $('#exec_button').hide();
